@@ -9,6 +9,7 @@ Please note, this code is only for python 3+. If you are using python 2+, please
 from __future__ import print_function
 import tensorflow as tf
 
+# session会话控制
 matrix1 = tf.constant([[3, 3]])
 matrix2 = tf.constant([[2],
                        [2]])
@@ -21,6 +22,7 @@ print(result)
 sess.close()
 
 # method 2
+# 自动关闭session
 with tf.Session() as sess:
     result2 = sess.run(product)
     print(result2)

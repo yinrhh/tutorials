@@ -51,8 +51,10 @@ sess = tf.Session()
 sess.run(init)
 
 # plot the real data
+# plot输出结果
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
+# scatter代表散点形式
 ax.scatter(x_data, y_data)
 plt.ion()
 plt.show()
@@ -60,7 +62,7 @@ plt.show()
 for i in range(1000):
     # training
     sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
-    if i % 50 == 0:
+    if i % 20 == 0:
         # to visualize the result and improvement
         try:
             ax.lines.remove(lines[0])
@@ -68,8 +70,10 @@ for i in range(1000):
             pass
         prediction_value = sess.run(prediction, feed_dict={xs: x_data})
         # plot the prediction
+        # plot代表曲线形式
         lines = ax.plot(x_data, prediction_value, 'r-', lw=5)
         plt.pause(0.1)
+plt.pause(0)
 
 
 

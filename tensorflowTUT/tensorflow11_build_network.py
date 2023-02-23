@@ -27,11 +27,14 @@ noise = np.random.normal(0, 0.05, x_data.shape)
 y_data = np.square(x_data) - 0.5 + noise
 
 # define placeholder for inputs to network
+# 输入层：输入x_data多少个data，就有多少个神经元
+# None是指行不定，列为1.类似于列向量
 xs = tf.placeholder(tf.float32, [None, 1])
 ys = tf.placeholder(tf.float32, [None, 1])
 # add hidden layer
 l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
 # add output layer
+# 输出层：输出y_data多少个data，就有多少个神经元
 prediction = add_layer(l1, 10, 1, activation_function=None)
 
 # the error between prediction and real data
@@ -51,6 +54,7 @@ sess.run(init)
 
 for i in range(1000):
     # training
+    # 训练的本质是误差反向传递
     sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
     if i % 50 == 0:
         # to see the step improvement
